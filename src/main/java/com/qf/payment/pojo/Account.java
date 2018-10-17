@@ -8,6 +8,24 @@ public class Account {
     private Integer toId;
     private Date createTime;
     private Double balance;
+    private Double money;
+    private Integer uId;
+
+    public Integer getuId() {
+        return uId;
+    }
+
+    public void setuId(Integer uId) {
+        this.uId = uId;
+    }
+
+    public Double getMoney() {
+        return money;
+    }
+
+    public void setMoney(Double money) {
+        this.money = money;
+    }
 
     public Integer getId() {
         return id;

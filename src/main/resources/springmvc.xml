@@ -28,6 +28,14 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <mvc:resources mapping="/js/**" location="/js/"/>
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/imgs/**" location="/imgs/"/>
+    <mvc:resources mapping="/picture/**" location="/picture/"/>
 
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<bean class="com.qf.intercepter.MyIntercepter"></bean>-->
+            <!--&lt;!&ndash;<mvc:exclude-mapping path="/index"></mvc:exclude-mapping>&ndash;&gt;-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
 </beans>
