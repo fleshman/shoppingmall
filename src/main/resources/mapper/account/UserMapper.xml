@@ -1,1 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.account.mapper.UserMapper">
+
+    <!--插入数据-->
+    <insert id="insert" parameterType="User">
+        <selectKey order="AFTER" keyColumn="ID" resultType="User" keyProperty="id">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+        insert into tb_user values(#{id},#{username},#{password},#{isSeller},#{email},#{nickname},#{phone})
+    </insert>
+
+    <!--根据id删除数据-->
+    <delete id="delete" parameterType="User">
+        delete from tb_user where id = #{id}
+    </delete>
+
+    <!--根据id修改数据-->
+    <update id="update" parameterType="User">
+        update tb_user
+        <set>
+            <if test="username!=null and username!=''">
+                username = #{username},
+            </if>
+            <if test="password!=null and password!=''">
+                password = #{password},
+            </if>
+            <if test="isSeller!=null and isSeller!=''">
+                isSeller = #{isSeller},
+            </if>
+            <if test="email!=null and email!=''">
+                email = #{email},
+            </if>
+            <if test="nickname!=null and nickname!=''">
+                nickname = #{nickname},
+            </if>
+            <if test="phone!=null and phone!=''">
+                phone = #{phone},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--根据id查找用户信息-->
+    <select id="selectById"  resultType="User" parameterType="User">
+        select id,username,password,isSeller,email,nickname,phone from tb_user where id = #{id}
+    </select>
+
+    <!--根据用户名查找用户信息-->
+    <select id="selectByName"  resultType="User" parameterType="User">
+        select id,username,password,isSeller,email,nickname,phone from tb_user where username = #{username}
+    </select>
+
+    <!--查找所有用户信息-->
+    <select id="selectAll"  resultType="User">
+        select id,username,password,isSeller,email,nickname,phone from tb_user
+    </select>
+
+</mapper>
