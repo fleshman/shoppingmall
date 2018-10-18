@@ -12,7 +12,7 @@ public class User {
     private String password;
     private Integer isSeller;
     private String email;
-    private String nickanme;
+    private String nickname;
     private String phone;
 
     public Integer getId() {
@@ -55,19 +55,32 @@ public class User {
         this.email = email;
     }
 
-    public String getNickanme() {
-        return nickanme;
-    }
-
-    public void setNickanme(String nickanme) {
-        this.nickanme = nickanme;
-    }
-
     public String getPhone() {
         return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", isSeller=" + isSeller +
+                ", email='" + email + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }
