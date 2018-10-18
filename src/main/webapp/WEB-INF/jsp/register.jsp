@@ -50,7 +50,7 @@
               <div class="col-md-offset-1 col-lg-10" id="repassword_div">
                 <div class="form-group" style="height: 80px">
                   <span></span>
-                  <input type="text" name="repassword" class="form-control input-lg" placeholder="请再次输入密码">
+                  <input type="password" name="repassword" class="form-control input-lg" placeholder="请再次输入密码">
                 </div>
               </div>
               <div class=" col-md-offset-1 col-lg-10" style="height: 100px">
