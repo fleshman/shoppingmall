@@ -18,8 +18,8 @@ public class BalanceController {
     @RequestMapping(value = "/selectBalance",method = RequestMethod.GET)
     @ResponseBody
     public String selectBalance(HttpSession session){
-//        int id = ((User)session.getAttribute("sessionUser")).getId();
-        double n = balanceService.selectBalance(1);
+        int id = ((User)session.getAttribute("sessionUser")).getId();
+        double n = balanceService.selectBalance(id);
 
         return Double.toString(n);
     }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.products.mapper.ProductsMapper">
+
+    <select id="selectAll"   resultType="com.qf.products.pojo.Products">
+		select * from tb_products
+        <where>
+        uid=#{uid}
+        <if test="search !='' and search !=null">
+            and ptitle like "%${search}%"
+        </if>
+    </where>
+        limit #{offset},#{limit}
+
+
+
+	</select>
+
+
+    <!-- 	搜索总数 -->
+    <select id="countUser" resultType="int" >
+        select count(*) from tb_products
+        <where>
+            uid=#{uid}
+            <if test="search !='' and search !=null">
+                and ptitle like "%${search}%"
+            </if>
+        </where>
+
+    </select>
+
+
+    <!--增加-->
+    <insert id="insert" parameterType="com.qf.products.pojo.Products">
+          insert into tb_products(ptitle,pimgs,pprice,pqty,pdesc,uid) values(#{ptitle},#{pimgs},#{pprice},#{pqty},#{pdesc},#{uid})
+    </insert>
+
+<!--删除-->
+    <delete id="delete" parameterType="com.qf.products.pojo.Products">
+
+      delete  from tb_products where pid=#{pid}
+    </delete>
+
+    <!--修改-->
+    <update id="update" parameterType="com.qf.products.pojo.Products">
+        update  tb_products set ptitle=#{ptitle},pprice=#{pprice},pqty=#{pqty},pdesc=#{pdesc},uid=#{uid} where pid=#{pid}
+    </update>
+    <select id="selectId" resultType="int">
+        SELECT uid from tb_products where pid = #{pid}
+    </select>
+
+</mapper>

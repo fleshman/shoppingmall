@@ -5,6 +5,8 @@ import com.qf.payment.mapper.AccountMapper;
 import com.qf.payment.mapper.BalanceMapper;
 import com.qf.payment.pojo.Account;
 import com.qf.payment.service.AccountService;
+import com.qf.payment.service.BalanceService;
+import com.qf.products.mapper.ProductsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ public class AccountServiceImpl implements AccountService {
     private AccountMapper accountMapper;
     @Autowired
     private BalanceMapper balanceMapper;
+    @Autowired
+    private ProductsMapper productsMapper;
     //充值
     @Override
     public int recharge(Account account) throws Exception {
@@ -34,7 +38,8 @@ public class AccountServiceImpl implements AccountService {
             Account account = new Account();
             account.setuId(id);
             // 根据商品的id 查询 卖家的id
-            int toId = 0;
+            int toId = productsMapper.selectId(pid);
+
             account.setToId(id);
             account.setMoney(money);
             account.setCreateTime(new Date());

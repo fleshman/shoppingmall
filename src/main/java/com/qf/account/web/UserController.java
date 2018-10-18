@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class UserController {
+public class  UserController {
 
     @Autowired
     private UserSerice service;

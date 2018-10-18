@@ -92,7 +92,7 @@
           data:param,
           success:function(rec){
             if(rec=='ok'){
-              location.href = "${pageContext.request.contextPath}/index";
+              location.href = "${pageContext.request.contextPath}/userMessage";
             }else{
               $("#failMessage").html("用户名或密码错误！");
             }

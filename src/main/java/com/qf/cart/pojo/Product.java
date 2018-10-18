@@ -1,31 +1,24 @@
-package com.qf.products.pojo;
+package com.qf.cart.pojo;
 
-import org.springframework.web.multipart.MultipartFile;
+        /*FieldTypeComment
+        pidint(11) NOT NULL商品id
+        ptitlevarchar(50) NULL商品标题
+        pimgsvarchar(50) NULL商品图片
+        ppricedouble NULL商品价格
+        pqtyint(11) NULL商品数量
+        pdesctext NULL商品描述
+        uidint(11) NULL卖家id
+        cidint(1) NULL*/
 
-public class Products {
+public class Product {
 
-   /**
-    pidint(11) NOT NULL商品id
-    ptitlevarchar(50) NULL商品标题
-    pimgsvarchar(50) NULL商品图片
-    ppricedouble NULL商品价格
-    pqtyint(11) NULL商品数量
-    pdesctext NULL商品描述
-    uidint(11) NULL卖家id
-    cidint(11) N
-     */
-   private  Integer pid;
-   private  String ptitle;
-   private  String pimgs;
-   private  Double  pprice;
-   private  Integer pqty;
-   private  String  pdesc;
-   private Integer uid;
-   private Integer cid;
-
-
-    public Products() {
-    }
+    private Integer pid;
+    private String ptitle;
+    private String pimgs;
+    private Double pprice;
+    private Integer pqty;
+    private String pdesc;
+    private Integer cid;
 
     public Integer getPid() {
         return pid;
@@ -75,14 +68,6 @@ public class Products {
         this.pdesc = pdesc;
     }
 
-    public Integer getUid() {
-        return uid;
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
-
     public Integer getCid() {
         return cid;
     }
@@ -90,4 +75,18 @@ public class Products {
     public void setCid(Integer cid) {
         this.cid = cid;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "pid=" + pid +
+                ", ptitle='" + ptitle + '\'' +
+                ", pimgs='" + pimgs + '\'' +
+                ", pprice=" + pprice +
+                ", pqty=" + pqty +
+                ", pdesc='" + pdesc + '\'' +
+                ", cid=" + cid +
+                '}';
+    }
+
 }

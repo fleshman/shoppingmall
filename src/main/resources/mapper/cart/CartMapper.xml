@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qf.cart.mapper.CartMapper">
+
+    <resultMap id="baseResultMap" type="Cart">
+        <id column="id" property="id"></id>
+        <result column="uid" property="uid"></result>
+        <result column="pid" property="pid"></result>
+        <result column="count" property="count"></result>
+        <association property="p" javaType="Product">
+            <id column="pid" property="pid"/>
+            <result column="ptitle" property="ptitle"/>
+            <result column="pimgs" property="pimgs"/>
+            <result column="pprice" property="pprice"/>
+            <result column="pqty" property="pqty"/>
+            <result column="pdesc" property="pdesc"/>
+            <result column="cid" property="cid"/>
+        </association>
+    </resultMap>
+
+
+    <select id="selectAll" resultType="Cart">
+        SELECT * from tb_cart where uid = #{uid};
+    </select>
+
+    <select id="findTotalCount" resultType="int">
+        SELECT count(*) FROM tb_cart c LEFT JOIN tb_products p ON c.pid=p.pid where p.pdesc like '%${search}%' and c.uid = #{uid};
+    </select>
+
+    <select id="findCartList" resultMap="baseResultMap">
+        SELECT * FROM tb_cart c LEFT JOIN tb_products p ON c.pid=p.pid
+         where p.pdesc like '%${search}%' and c.uid = #{uid}
+          limit #{offset},#{limit};
+    </select>
+
+    <delete id="deleteCartById" parameterType="int">
+        DELETE FROM tb_cart where id = #{id}
+    </delete>
+
+    <delete id="deleteAllSelected">
+        DELETE FROM tb_cart where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <update id="changeCount">
+        update tb_cart set count = #{param2} where id = #{param1}
+    </update>
+
+    <insert id="addCartbyPid" >
+        insert into tb_cart (uid,pid) VALUES (#{param2},#{param1})
+    </insert>
+
+    <select id="selectById" resultType="Cart">
+        select * from tb_cart where uid = #{param2} and pid = #{param1}
+
+    </select>
+    <update id="updateCount">
+        UPDATE tb_cart set count = count +1 WHERE uid = #{param2} and pid = #{param1}
+    </update>
+</mapper>

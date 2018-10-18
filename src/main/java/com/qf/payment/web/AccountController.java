@@ -23,10 +23,10 @@ public class AccountController {
     // 交易
     @RequestMapping(value = "/transfer/{pid}/{money}",method = RequestMethod.PUT)
     @ResponseBody
-    public String transfer(int pid,double money,HttpSession session) throws Exception{
+    public String transfer(@PathVariable int pid,@PathVariable double money,HttpSession session) throws Exception{
         User user = (User)session.getAttribute("sessionUser");
         int id = user.getId();
-        int n = accountService.transfer(pid,money,id);
+        int n = accountService.transfer(id,money,pid);
         return n != 0 ? Info.SUCCESS : Info.FAIL;
 
     }
@@ -58,8 +58,9 @@ public class AccountController {
     @RequestMapping(value = "/listAll",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object listAllWithJson(@RequestBody JSONObject jsonObject,HttpSession session){
-//        User user = (User) session.getAttribute("sessionUser");
-        jsonObject.put("uid",1);
+        User user = (User) session.getAttribute("sessionUser");
+        int uid = user.getId();
+        jsonObject.put("uid",uid);
         jsonObject = accountService.listAll(jsonObject);
 
         return jsonObject;
@@ -75,6 +76,13 @@ public class AccountController {
     public String deleteRecourd(@PathVariable int id){
         int n = accountService.deleteRecord(id);
         return n != 0 ? Info.SUCCESS : Info.FAIL;
+    }
+
+    @RequestMapping(value = "/payAll",method = RequestMethod.PUT)
+    @ResponseBody
+    public String payAll(){
+
+        return null;
     }
 
 

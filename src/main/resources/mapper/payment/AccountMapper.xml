@@ -9,10 +9,10 @@
 
     </insert>
     <insert id="gathering">
-        INSERT INTO tb_account(fromId,createtime,money,uid) VALUES (#{uid},#{createTime},#{money},#{toId})
+        INSERT INTO tb_account(fromId,createtime,money,uid) VALUES (#{uId},#{createTime},#{money},#{toId})
     </insert>
     <select id="selectBalance">
-        SELECT balance from tb_account WHERE uid = #{uid}
+        SELECT balance from tb_account WHERE uid = #{uId}
     </select>
     <select id="listAll" resultType="com.qf.payment.pojo.Account">
         SELECT * from tb_account where uid = #{uid} and id like '%${search}%' Limit #{offset},#{limit}

@@ -13,6 +13,7 @@
     <typeAliases>
         <package name="model"/>
         <package name="com.qf.account.pojo"></package>
+        <package name="com.qf.cart.pojo"></package>
     </typeAliases>
     <plugins>
         <!-- com.github.pagehelper为PageHelper类所在包名 -->
