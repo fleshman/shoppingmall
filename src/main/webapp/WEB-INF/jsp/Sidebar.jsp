@@ -9,9 +9,9 @@
       </div>
       <ul class="app-menu">
         <!-- 个人中心 -->
-        <li><a class="app-menu__item active" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">个人中心</span></a></li>
+        <li><a class="app-menu__item active" href="userMessage"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">个人中心</span></a></li>
         
-        <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">订单管理</span></a></li>
+        <li><a class="app-menu__item" href="orderMessage"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">订单管理</span></a></li>
        
         <li><a class="app-menu__item active" href="totable"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">商品管理</span></a></li>
 

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.account.mapper.OrderMapper">
+
+    <!--插入数据-->
+    <insert id="insert" parameterType="Order">
+        <selectKey order="AFTER" keyColumn="ID" resultType="Order" keyProperty="oid">
+            SELECT LAST_INSERT_ID() as oid
+        </selectKey>
+        insert into tb_orders values(#{oid},#{oqty},#{uid},#{pid},#{ispaid})
+    </insert>
+
+    <!--根据id删除数据-->
+    <delete id="delete" parameterType="Order">
+        delete from tb_orders where oid = #{oid}
+    </delete>
+
+    <!--根据id修改数据-->
+    <update id="update" parameterType="Order">
+        update tb_orders
+        <set>
+            <if test="oqty!=null and oqty!=''">
+                oqty = #{oqty},
+            </if>
+            <if test="uid!=null and uid!=''">
+                uid = #{uid},
+            </if>
+            <if test="pid!=null and pid!=''">
+                pid = #{pid},
+            </if>
+            <if test="ispaid!=null and ispaid!=''">
+                ispaid = #{ispaid},
+            </if>
+        </set>
+        where oid = #{oid}
+    </update>
+
+    <!--根据id查找数据-->
+    <select id="selectById"  resultType="Order" parameterType="Order">
+        select oid,oqty,uid,pid,ispaid from tb_orders where oid = #{oid}
+    </select>
+
+    <!--根据分页信息查找数据-->
+    <select id="selectByUid"  resultType="Order" parameterType="com.alibaba.fastjson.JSONObject">
+        select oid,oqty,uid,pid,ispaid from tb_orders where uid = #{uid} limit #{offset},#{limit}
+    </select>
+
+    <!--查找某一用户的订单总数-->
+    <select id="selectCountByUid" resultType="java.lang.Long" parameterType="com.alibaba.fastjson.JSONObject">
+        select Count(*) from tb_orders where uid = #{uid}
+    </select>
+
+    <!--查找所有数据-->
+    <select id="selectAll"  resultType="Order">
+        select oid,oqty,uid,pid,ispaid from tb_orders
+    </select>
+
+</mapper>

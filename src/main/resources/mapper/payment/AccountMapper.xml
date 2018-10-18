@@ -5,11 +5,11 @@
         INSERT into tb_account (createtime,money,uid) VALUES (#{createTime},#{money},#{uId})
     </insert>
     <insert id="payment">
-        INSERT INTO  tb_account (toid,createtime,money,uid) VALUES (#{toId},#{createTime},#{money},#{id})
+        INSERT INTO  tb_account (fromid,toid,createtime,money,uid) VALUES (#{fromId},#{toId},#{createTime},#{money},#{id})
 
     </insert>
     <insert id="gathering">
-        INSERT INTO tb_account(fromId,createtime,money,uid) VALUES (#{uId},#{createTime},#{money},#{toId})
+        INSERT INTO tb_account(fromId,toid,createtime,money,uid) VALUES (#{fromId},#{toId},#{createTime},#{money},#{toId})
     </insert>
     <select id="selectBalance">
         SELECT balance from tb_account WHERE uid = #{uId}

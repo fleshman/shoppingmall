@@ -4,6 +4,7 @@ import com.qf.account.pojo.User;
 import com.qf.account.service.UserSerice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class  UserController {
+public class UserController {
 
     @Autowired
     private UserSerice service;
@@ -26,13 +27,18 @@ public class  UserController {
         return "register";
     }
 
+    @RequestMapping("/orderMessage")
+    public String showOrderMessage(){
+        return "orderMessage";
+    }
+
     /**
      * 登录验证方法
      * @param user
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/user/loginCheck", method = RequestMethod.GET)
+    @RequestMapping(value = "/loginCheck", method = RequestMethod.GET)
     @ResponseBody
     public String login(User user, HttpSession session) throws Exception {
         //传递业务
@@ -53,7 +59,7 @@ public class  UserController {
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/user/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public String register(User user, HttpSession session) throws Exception {
         System.out.println(user);
@@ -71,6 +77,41 @@ public class  UserController {
         }else{
             System.out.println("获取数据库自增主键失败...");
         }
+        return "ok";
+    }
+
+    /**
+     * 展示个人信息方法
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/showUserMessage")
+    public String showUserMessage(Model model, HttpSession session) throws Exception {
+        User user = (User)session.getAttribute("sessionUser");
+        model.addAttribute(user);
+        return "userMessage";
+    }
+
+    /**
+     * 登录验证方法
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/modifyUserMessage")
+    @ResponseBody
+    public String modifyUserMessage(User user, HttpSession session) throws Exception {
+        System.out.println(user);
+        try{
+            //传递业务
+            service.modify(user);
+        }catch(Exception e){
+            //修改失败
+            e.printStackTrace();
+            return "fail";
+        }
+        session.setAttribute("sessionUser",user);
         return "ok";
     }
 

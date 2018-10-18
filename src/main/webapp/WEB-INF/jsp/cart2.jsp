@@ -110,7 +110,7 @@
                 title: "操作", formatter:
                 function (value, row, index) {
                     //var Json_row = JSON.stringify(row);
-                    return "<button class='btn btn-info' onclick='payment(" + row.count * row.p.pprice+","+row.pid + ")'>结算</button>" +
+                    return "<button class='btn btn-info' onclick='payment(" + row.count * row.p.pprice+","+row.pid + ","+row.id+")'>结算</button>" +
                         "<button class='btn btn-danger' onclick='deleteCart(" + row.id + ")'>删除</button>";
                 },align: "center",valign:"middle"
             }],
@@ -267,7 +267,7 @@
         }
     }
 
-    function payment(totalprice,pid) {
+    function payment(totalprice,pid,id) {
 //        alert(totalprice);
 //        alert(pid);
         $.ajax({
@@ -277,7 +277,7 @@
             success:function (rec) {
                 if(rec=="success"){
                     alert("支付成功");
-                    deleteCart(pid);
+                    deleteCart(id);
                 }else {
                     alert("余额不足");
                 }
@@ -302,18 +302,23 @@
                        $(rows).each(function () {
                            var pid = this.pid;
                            var totalprice = this.pid*this.p.pprice;
+                           var id = this.id;
                            $.ajax({
                                url:"transfer/"+pid+"/"+totalprice,
                                method:"put",
                                contentType:"application/x-www-form-urlencoded; charset=UTF-8",
                                success:function () {
-                                   deleteCart(pid);
+                                   $.post(
+                                       url = "deleteCart?id=" + id
+
+                                   )
                                }
                            });
 
 
                        });
                        alert("支付成功");
+                       window.location.reload();
                    }
                 }
             });

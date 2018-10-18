@@ -40,14 +40,14 @@ public class AccountServiceImpl implements AccountService {
             // 根据商品的id 查询 卖家的id
             int toId = productsMapper.selectId(pid);
 
-            account.setToId(id);
+            account.setToId(toId);
             account.setMoney(money);
             account.setCreateTime(new Date());
-            account.setFromId(toId);
+            account.setFromId(id);
             int n = accountMapper.payment(account);
             n += accountMapper.gathering(account);
-            balanceMapper.updateBalance(id,-money);
-            balanceMapper.updateBalance(toId,money);
+            balanceMapper.updateBalance(id,money);
+            balanceMapper.updateBalance(toId,-money);
             return n;
         }else {
             return 0;

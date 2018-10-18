@@ -86,7 +86,7 @@
       submitHandler:function(){
         var param = $("#myForm").serialize();
         $.ajax({
-          url: "user/loginCheck",
+          url: "loginCheck",
           type: "get",
           dataType: "text",
           data:param,

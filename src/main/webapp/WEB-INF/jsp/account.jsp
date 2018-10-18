@@ -184,11 +184,11 @@
             //初始化表格
             $("#mytable").bootstrapTable({
 
-                //列参数
+                //列参数I
                 columns: [{
                     fileid: 'state', checkbox: true
 
-                },{ field: 'id', title: 'ID', align:"center" }, { field: 'fromId', title: '转入id', align:"center" , align:"center"}, { field: 'toId', title: '转出id' , align:"center"},
+                },{ field: 'id', title: 'ID', align:"center" }, { field: 'fromId', title: '转出ID', align:"center" , align:"center"}, { field: 'toId', title: '转入d' , align:"center"},
 
                     { field: 'createTime', title: '创建时间', align:"center",formatter:function (value) {
                         return changeDateFormat(value);
