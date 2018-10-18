@@ -7,7 +7,7 @@
           <element id="module-output" name="shoppingmall" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: org.springframework:spring-context:4.2.8.Release" />
+          <element id="file-copy" path="$USER_HOME$/.m2/repository/org/springframework/spring-context/4.2.8.Release/spring-context-4.2.8.RELEASE.jar" output-file-name="spring-context-4.2.8.Release.jar" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.2.8.RELEASE" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.2.8.RELEASE" />
