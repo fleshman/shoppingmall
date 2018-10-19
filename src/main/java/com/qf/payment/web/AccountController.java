@@ -40,6 +40,7 @@ public class AccountController {
         Account account = new Account();
         account.setMoney(money);
         account.setuId(id);
+        account.setToId(id);
         int n = accountService.recharge(account);
         return n != 0 ? Info.SUCCESS : Info.FAIL;
 

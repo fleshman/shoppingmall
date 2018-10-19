@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qf.payment.mapper.AccountMapper">
     <insert id="recharge">
-        INSERT into tb_account (createtime,money,uid) VALUES (#{createTime},#{money},#{uId})
+        INSERT into tb_account (toId,createtime,money,uid) VALUES (#{toId},#{createTime},#{money},#{uId})
     </insert>
     <insert id="payment">
         INSERT INTO  tb_account (fromid,toid,createtime,money,uid) VALUES (#{fromId},#{toId},#{createTime},#{money},#{uId})

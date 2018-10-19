@@ -54,5 +54,8 @@
     <select id="selectByPid" parameterType="com.qf.products.pojo.Products" resultType="com.qf.products.pojo.Products">
         SELECT * from tb_products where pid = #{pid}
     </select>
+    <update id="updateProduct">
+        UPDATE tb_products set pqty = pqty-1 where pid = #{pid}
+    </update>
 
 </mapper>

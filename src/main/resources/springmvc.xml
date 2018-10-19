@@ -30,12 +30,32 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <mvc:resources mapping="/imgs/**" location="/imgs/"/>
     <mvc:resources mapping="/picture/**" location="/picture/"/>
 
-    <!--<mvc:interceptors>-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/**"/>-->
-            <!--<bean class="com.qf.intercepter.MyIntercepter"></bean>-->
-            <!--&lt;!&ndash;<mvc:exclude-mapping path="/index"></mvc:exclude-mapping>&ndash;&gt;-->
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--
+                /**:表示匹配所有url
+                /user/*:匹配特定路径下的url
+                /user/**:匹配特定路径下,更深路径的url
+             -->
+            <mvc:mapping path="/**"/>
+            <!--exclude-mapping表示对该url不做拦截-->
+            <mvc:exclude-mapping path="/static/**"/>
+            <mvc:exclude-mapping path="/imgs/**"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/picture/**"/>
+            <mvc:exclude-mapping path="/toLogin"/>
+            <mvc:exclude-mapping path="/loginCheck"/>
+            <mvc:exclude-mapping path="/register"/>
+            <mvc:exclude-mapping path="/allproducts"/>
+            <mvc:exclude-mapping path="/adminRegister"/>
+
+            <!-- 拦截器 -->
+            <bean class="com.qf.intercepter.MyIntercepter"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+
 
 </beans>

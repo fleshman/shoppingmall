@@ -29,4 +29,6 @@ public interface ProductsMapper {
 
     // 根据商品的id 查询 卖家的id
     public  Integer  selectId(Integer pid)throws Exception;
+
+    void updateProduct(int pid);
 }

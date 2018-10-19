@@ -129,7 +129,7 @@
                 submitHandler:function(){
                     var param = $("#myForm").serialize();
                     $.ajax({
-                        url: "${pageContext.request.contextPath}/user/modifyUserMessage",
+                        url: "${pageContext.request.contextPath}/modifyUserMessage",
                         type: "get",
                         dataType: "text",
                         data:param,

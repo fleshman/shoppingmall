@@ -16,11 +16,8 @@ public class MyIntercepter  implements  HandlerInterceptor{
         if (user!=null){
             return true;
 
-        }else {
-            request.getRequestDispatcher("login").forward(request,response);
         }
-
-
+        response.sendRedirect("toLogin");
         return false;
     }
 
