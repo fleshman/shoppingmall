@@ -68,7 +68,7 @@
 </script><div id="Topbar" class="Topbar">
     <div class="ctr cf">
         <ul class="Topbar-menu fr">
-            <li class="Topbar-menu-item ib"><a href="/order/myorder.jspx">我的JSPGOU</a></li>
+            <li class="Topbar-menu-item ib"><a href="allproducts">展示所有商品</a></li>
             <li class="Topbar-menu-item ib"><a href="/collect/mycollect.jspx">收藏夹</a></li>
             <!--<li class="Topbar-menu-item ib"><a target="_blank" href="">网站导航</a>-->
             </li>
@@ -77,7 +77,7 @@
             <li class="Topbar-welcome-item">Hi~欢迎来到JSPGOU商城</li>
             <li class="Topbar-welcome-item"><a href="login">请登录</a></li>
             <li class="Topbar-welcome-item"><a
-                    href="/register.jspx">免费注册</a></li>
+                    href="/toRegister">免费注册</a></li>
         </ul>
 
 

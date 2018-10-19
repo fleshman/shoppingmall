@@ -25,6 +25,11 @@ public class ProductsController {
         return "products";
     }
 
+    @RequestMapping("/toindex")
+    public String run2() {
+        return "index";
+    }
+
 
     //分页查询
     @ResponseBody
@@ -39,9 +44,9 @@ public class ProductsController {
        @RequestMapping(value = "/insert",method = RequestMethod.POST)
     public String  doPut(Products products,@RequestParam MultipartFile img, HttpServletRequest request) throws Exception {
         String savepath = request.getServletContext().getRealPath("picture/"+img.getOriginalFilename());
-        File file = new File("C:/Users/think/IdeaProjects/shoppingmall/src/main/webapp/picture/"+img.getOriginalFilename());
+//        File file = new File("F:/shoppingmall1/src/main/webapp/picture/"+img.getOriginalFilename());
 
-        img.transferTo(file);
+        img.transferTo(new File(savepath));
         String imgpath=("picture/"+img.getOriginalFilename());
         products.setPimgs(imgpath);
 
@@ -73,5 +78,22 @@ public class ProductsController {
         products.setPid(pid);
         ser.remove(products);
         return "success";
+    }
+    
+    //查询所有的商品
+    @RequestMapping("/allproducts")
+    public  String  alllist(Model model) throws Exception {
+        List<Products> list = ser.findAllProducts();
+        model.addAttribute("products", list);
+        return "allproducts";
+    }
+
+    //通过pid查询单个商品
+    @RequestMapping("/goproduct")
+    public  String  findProduct(Products products,Model model)throws  Exception{
+        System.out.println(products.getPid());
+        Products pro = ser.findByPid(products);
+        model.addAttribute("product", pro);
+        return "product";
     }
 }

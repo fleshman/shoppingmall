@@ -8,16 +8,16 @@
 		select * from tb_products
         <where>
         uid=#{uid}
-        <if test="search !='' and search !=null">
-            and ptitle like "%${search}%"
-        </if>
-    </where>
+            <if test="search !='' and search !=null">
+                and ptitle like "%${search}%"
+            </if>
+        </where>
         limit #{offset},#{limit}
-
-
-
 	</select>
 
+    <select id="selectAllProducts" resultType="com.qf.products.pojo.Products">
+        select * from tb_products
+    </select>
 
     <!-- 	搜索总数 -->
     <select id="countUser" resultType="int" >
@@ -49,6 +49,10 @@
     </update>
     <select id="selectId" resultType="int">
         SELECT uid from tb_products where pid = #{pid}
+    </select>
+
+    <select id="selectByPid" parameterType="com.qf.products.pojo.Products" resultType="com.qf.products.pojo.Products">
+        SELECT * from tb_products where pid = #{pid}
     </select>
 
 </mapper>

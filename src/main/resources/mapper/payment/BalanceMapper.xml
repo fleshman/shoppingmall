@@ -8,4 +8,7 @@
     <update id="updateBalance">
         UPDATE tb_balance set balance = balance - #{money} WHERE id = #{id}
     </update>
+    <insert id="createBalance">
+        INSERT INTO tb_balance (id,balance) VALUES (#{id},0);
+    </insert>
 </mapper>

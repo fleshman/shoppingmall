@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh-cmn">
 <head>
-  <title>用户登录</title>
+  <title>管理员注册</title>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
@@ -16,7 +16,7 @@
 <body>
 <div class="container">
   <div class="col-lg-12" style="background-color: aliceblue; height: 80px;">
-    <h1>登录界面</h1>
+    <h1>注册界面</h1>
   </div>
   <div style="height:100px;"></div>
 
@@ -24,7 +24,7 @@
     <div class="col-lg-1" ></div>
     <div class="col-lg-6">
       <div>
-        <img src="imgs/login.jpg" style="width:550px; height: 450px"/>
+        <img src="imgs/adminlogin.jpg" style="width:550px; height: 450px"/>
       </div>
     </div>
     <div class="col-lg-5">
@@ -32,7 +32,7 @@
         <tr>
           <td>
             <div style="text-align: center; height: 60px">
-              <h3 id="table_title">用户登录</h3>
+              <h3 id="table_title">管理员注册</h3>
             </div>
             <form  id ='myForm' class="bs-example bs-example-form" role="form">
               <div class=" col-md-offset-1 col-lg-10">
@@ -42,20 +42,22 @@
                 </div>
               </div>
               <div class="col-md-offset-1 col-lg-10">
-                <div class="form-group" style="height: 80px" id="password_div">
+                <div class="form-group" style="height: 40px" id="password_div">
                   <span></span>
-                  <input type="password" name="password" class="form-control input-lg" id="password" placeholder="请输入密码">
+                  <input type="text" name="password" class="form-control input-lg" id="password" placeholder="请输入密码">
+                </div>
+              </div>
+              <div class="col-md-offset-1 col-lg-10" id="repassword_div">
+                <div class="form-group" style="height: 80px">
+                  <span></span>
+                  <input type="password" name="repassword" class="form-control input-lg" placeholder="请再次输入密码">
                 </div>
               </div>
               <div class=" col-md-offset-1 col-lg-10" style="height: 100px">
                <%-- <input type="hidden" name="_method" value="GET">--%>
-                <button type="submit" class="btn btn-primary btn-lg btn-block" id="login_btn">登录</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" id="login_btn">管理员注册</button>
               </div>
-              <span id="failMessage" style="width: 50px"></span>
-              <div class="col-md-offset-6 col-lg-10" id="register_div">
-                <a id="adminLogin">管理员登录 | </a>
-                <a id="user_register">注册</a>
-              </div>
+
             </form>
           </td>
         </tr>
@@ -77,38 +79,36 @@
     $("#myForm").validate({
       rules:{
         "username":{required:true},
-        "password":{required:true}
+        "password":{required:true},
+        "repassword":{equalTo:"#password"}
       },
       messages:{
         "username":{required:"用户名不能为空"},
-        "password":{required:"密码不能为空"}
+        "password":{required:"密码不能为空"},
+        "repassword":{equalTo:"密码不一致"}
       },
 
       submitHandler:function(){
         var param = $("#myForm").serialize();
+        alert(param);
         $.ajax({
-          url: "loginCheck",
-          type: "get",
+          url: "user/adminRegister",
+          type: "post",
           dataType: "text",
           data:param,
           success:function(rec){
             if(rec=='ok'){
-              location.href = "${pageContext.request.contextPath}/allproducts";
+              location.href = "${pageContext.request.contextPath}/index";
             }else{
-              $("#failMessage").html("用户名或密码错误！");
+              alert("注册失败！");
             }
           }
         });
       }
     });
 
-    $("#user_register").click(function(){
-      location.href = "${pageContext.request.contextPath}/toRegister";
-    });
 
-    $("#adminLogin").click(function(){
-      location.href = "${pageContext.request.contextPath}/adminLogin";
-    });
+
 
   });
 

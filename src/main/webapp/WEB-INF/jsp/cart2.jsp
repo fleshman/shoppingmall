@@ -123,7 +123,7 @@
         sidePagination: "server",
         url: "cart",
         striped: true,
-        showColumns: true,
+//        showColumns:true
         showRefresh: true
     })
 

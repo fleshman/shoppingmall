@@ -17,7 +17,7 @@ public class MyIntercepter  implements  HandlerInterceptor{
             return true;
 
         }else {
-            request.getRequestDispatcher("login.jsp").forward(request,response);
+            request.getRequestDispatcher("login").forward(request,response);
         }
 
 

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh-cmn">
 <head>
-  <title>用户登录</title>
+  <title>管理员登录</title>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
@@ -24,7 +24,7 @@
     <div class="col-lg-1" ></div>
     <div class="col-lg-6">
       <div>
-        <img src="imgs/login.jpg" style="width:550px; height: 450px"/>
+        <img src="imgs/adminlogin.jpg" style="width:550px; height: 450px"/>
       </div>
     </div>
     <div class="col-lg-5">
@@ -32,7 +32,7 @@
         <tr>
           <td>
             <div style="text-align: center; height: 60px">
-              <h3 id="table_title">用户登录</h3>
+              <h3 id="table_title">管理员登录</h3>
             </div>
             <form  id ='myForm' class="bs-example bs-example-form" role="form">
               <div class=" col-md-offset-1 col-lg-10">
@@ -51,9 +51,8 @@
                <%-- <input type="hidden" name="_method" value="GET">--%>
                 <button type="submit" class="btn btn-primary btn-lg btn-block" id="login_btn">登录</button>
               </div>
-              <span id="failMessage" style="width: 50px"></span>
-              <div class="col-md-offset-6 col-lg-10" id="register_div">
-                <a id="adminLogin">管理员登录 | </a>
+              <div class="col-md-offset-9 col-lg-10" id="register_div">
+                <span id="failMessage"></span>
                 <a id="user_register">注册</a>
               </div>
             </form>
@@ -87,13 +86,13 @@
       submitHandler:function(){
         var param = $("#myForm").serialize();
         $.ajax({
-          url: "loginCheck",
+          url: "adminLoginCheck",
           type: "get",
           dataType: "text",
           data:param,
           success:function(rec){
             if(rec=='ok'){
-              location.href = "${pageContext.request.contextPath}/allproducts";
+              location.href = "${pageContext.request.contextPath}/userMessage";
             }else{
               $("#failMessage").html("用户名或密码错误！");
             }
@@ -103,11 +102,7 @@
     });
 
     $("#user_register").click(function(){
-      location.href = "${pageContext.request.contextPath}/toRegister";
-    });
-
-    $("#adminLogin").click(function(){
-      location.href = "${pageContext.request.contextPath}/adminLogin";
+      location.href = "${pageContext.request.contextPath}/adminRegister";
     });
 
   });

@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface CartService {
 
-    public List<Cart> findAll(int id);
+    List<Cart> findAll(int id);
 
     JSONObject dataJSON(JSONObject jo, int uid);
 
@@ -21,5 +21,5 @@ public interface CartService {
 
     void deleteAllSelected(List<Integer> ids);
 
-    void addCartbyPid(int pid,int uid);
+    int addCartbyPid(int pid,int uid) throws Exception;
 }

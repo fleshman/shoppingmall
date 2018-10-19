@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <selectKey order="AFTER" keyColumn="ID" resultType="User" keyProperty="id">
             SELECT LAST_INSERT_ID() as id
         </selectKey>
-        insert into tb_user values(#{id},#{username},#{password},#{isSeller},#{email},#{nickname},#{phone})
+        insert into tb_user values(#{id},#{username},#{password},#{isSeller},#{email},#{nickname},#{phone},#{isadmin})
     </insert>
 
     <!--根据id删除数据-->
@@ -39,23 +39,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="phone!=null and phone!=''">
                 phone = #{phone},
             </if>
+            <if test="isadmin!=null and isadmin!=''">
+                isadmin = #{isadmin},
+            </if>
         </set>
         where id = #{id}
     </update>
 
     <!--根据id查找用户信息-->
     <select id="selectById"  resultType="User" parameterType="User">
-        select id,username,password,isSeller,email,nickname,phone from tb_user where id = #{id}
+        select id,username,password,isSeller,email,nickname,phone,isadmin from tb_user where id = #{id}
     </select>
 
     <!--根据用户名查找用户信息-->
     <select id="selectByName"  resultType="User" parameterType="User">
-        select id,username,password,isSeller,email,nickname,phone from tb_user where username = #{username}
+        select id,username,password,isSeller,email,nickname,phone,isadmin from tb_user where username = #{username}
     </select>
 
     <!--查找所有用户信息-->
     <select id="selectAll"  resultType="User">
-        select id,username,password,isSeller,email,nickname,phone from tb_user
+        select id,username,password,isSeller,email,nickname,phone,isadmin from tb_user
     </select>
 
 </mapper>

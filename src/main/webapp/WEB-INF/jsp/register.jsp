@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh-cmn">
 <head>
-  <title>用户登录</title>
+  <title>用户注册</title>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
@@ -16,7 +16,7 @@
 <body>
 <div class="container">
   <div class="col-lg-12" style="background-color: aliceblue; height: 80px;">
-    <h1>登录界面</h1>
+    <h1>注册界面</h1>
   </div>
   <div style="height:100px;"></div>
 
@@ -44,7 +44,7 @@
               <div class="col-md-offset-1 col-lg-10">
                 <div class="form-group" style="height: 40px" id="password_div">
                   <span></span>
-                  <input type="text" name="password" class="form-control input-lg" id="password" placeholder="请输入密码">
+                  <input type="password" name="password" class="form-control input-lg" id="password" placeholder="请输入密码">
                 </div>
               </div>
               <div class="col-md-offset-1 col-lg-10" id="repassword_div">
@@ -90,15 +90,14 @@
 
       submitHandler:function(){
         var param = $("#myForm").serialize();
-        alert(param);
         $.ajax({
-          url: "user/register",
+          url: "register",
           type: "post",
           dataType: "text",
           data:param,
           success:function(rec){
             if(rec=='ok'){
-              location.href = "${pageContext.request.contextPath}/index";
+              location.href = "${pageContext.request.contextPath}/allproducts";
             }else{
               alert("注册失败！");
             }

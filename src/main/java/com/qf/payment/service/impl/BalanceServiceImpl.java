@@ -9,9 +9,16 @@ import org.springframework.stereotype.Service;
 public class BalanceServiceImpl implements BalanceService{
     @Autowired
     private BalanceMapper balanceMapper;
+
     @Override
     public double selectBalance(int id) {
 
         return balanceMapper.selectBalance(id);
+    }
+
+    @Override
+    public int createBalance(int id) {
+
+        return balanceMapper.createBalance(id);
     }
 }

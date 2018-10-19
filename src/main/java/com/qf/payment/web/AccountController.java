@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class AccountController {
@@ -78,11 +79,14 @@ public class AccountController {
         return n != 0 ? Info.SUCCESS : Info.FAIL;
     }
 
-    @RequestMapping(value = "/payAll",method = RequestMethod.PUT)
-    @ResponseBody
-    public String payAll(){
 
-        return null;
+
+    @RequestMapping(value = "/deleteAll",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String deleteAll(@RequestBody List<String> idList){
+        accountService.deleteAll(idList);
+
+        return Info.SUCCESS;
     }
 
 

@@ -53,7 +53,7 @@
                                 <input type="text" id="from_balance" name="money" class="form-control" placeholder="请输入金额" >
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="close()">关闭</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal" id="close" onclick="close()">关闭</button>
                                 <button type="submit" class="btn btn-primary" id="save" >提交</button>
                             </div>
                         </form>
@@ -62,35 +62,35 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="TransferModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header" id="div2">
-                        <h4 class="modal-title" id="myModalLabel2">充值</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="#" id="myForm2">
+        <%--<div class="modal fade" id="TransferModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">--%>
+            <%--<div class="modal-dialog" role="document">--%>
+                <%--<div class="modal-content">--%>
+                    <%--<div class="modal-header" id="div2">--%>
+                        <%--<h4 class="modal-title" id="myModalLabel2">充值</h4>--%>
+                        <%--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--%>
+                    <%--</div>--%>
+                    <%--<div class="modal-body">--%>
+                        <%--<form action="#" id="myForm2">--%>
 
 
-                            <div class="form-group">
-                                <label for="id">对方账户id</label>
-                                <input type="text" id="id2" name="id" class="form-control" placeholder="请输入账户id">
-                            </div>
-                            <div class="form-group">
-                                <label for="from_balance">充值金额</label>
-                                <input type="text" id="from_balance2" name="money" class="form-control" placeholder="请输入金额" >
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="close()">关闭</button>
-                                <button type="submit" class="btn btn-primary" id="save2" >提交</button>
-                            </div>
-                        </form>
-                    </div>
+                            <%--<div class="form-group">--%>
+                                <%--<label for="id">对方账户id</label>--%>
+                                <%--<input type="text" id="id2" name="id" class="form-control" placeholder="请输入账户id">--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group">--%>
+                                <%--<label for="from_balance">充值金额</label>--%>
+                                <%--<input type="text" id="from_balance2" name="money" class="form-control" placeholder="请输入金额" >--%>
+                            <%--</div>--%>
+                            <%--<div class="modal-footer">--%>
+                                <%--<button type="button" class="btn btn-default" data-dismiss="modal"id="close" onclick="close()">关闭</button>--%>
+                                <%--<button type="submit" class="btn btn-primary" id="save2" >提交</button>--%>
+                            <%--</div>--%>
+                        <%--</form>--%>
+                    <%--</div>--%>
 
-                </div>
-            </div>
-        </div>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
 
 
         <div class="app-title">
@@ -108,6 +108,7 @@
           <div class="tile">
             <div class="tile-body">
               <button type="button" class="btn btn-primary" id="recharge" data-toggle="modal" data-target="#myModal">充值</button>
+                <button type="button" class="btn btn-danger" id="deleteAll" >批量删除</button>
 
                 <span>账户余额:</span><span id="balance"></span>
 
@@ -129,6 +130,33 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
 
     <script type="text/javascript">
+        function deleteAll() {
+//            var rows = $("#mytable").bootstrapTable('getSelections');
+//            $(rows).each(function () {
+//                alert(this)
+//            })
+            alert("hello")
+
+        }
+        $("#deleteAll").click(function () {
+            var rows = $("#mytable").bootstrapTable('getSelections');
+            var idlist = new Array();
+
+            $(rows).each(function () {
+               idlist.push(this.id);
+           });
+            $.ajax({
+                url:"deleteAll",
+                data:JSON.stringify(idlist),
+                type: 'POST',
+                dataType: "text",
+                contentType: "application/json",
+                success:function (result) {
+                    alert(result);
+                    window.location.reload();
+                }
+            })
+        });
         $("#myForm").validate({
             rules:{
                 id:"required",
@@ -150,6 +178,8 @@
                     dataType:"text",
                     success:function (result) {
                         alert(result)
+                        $("#close").trigger("click");
+                        window.location.reload()
                     }
 
                 })
@@ -173,7 +203,7 @@
                 type:"GET",
                 dataType: "text",
                 success:function(result){
-                    $("#balance").text(result)
+                    $("#balance").text(result);
                 }
             })
         })

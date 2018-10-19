@@ -50,13 +50,11 @@
             <div class="tile-body">
 
                 <!--<%--主要内容展示开始--%>-->
-                <div id="content" class="col-lg-10" style="background-color: white; height: 530px">
-
-                    <div style="text-align: center; height: 60px">
-                        <h3 id="table_title">个人信息</h3>
+                <div id="content" class="col-lg-12" style="background-color: lightgoldenrodyellow; height: 530px">
+                    <div class="col-lg-12" style="text-align: center">
+                        <h3 style="padding-top: 20px" id="table_title">个人信息</h3>
                     </div>
-                    <div align="center">
-                        <form  id ='myForm' class="bs-example bs-example-form" role="form">
+                        <form style="padding-left: 285px; padding-top: 30px" id ='myForm' class="bs-example bs-example-form" role="form">
                             <input type="hidden" name="id" class="form-control" id="id" value="${user.id}">
                             <input type="hidden" name="password" class="form-control" id="password" value="${user.password}">
                             <div class="col-md-offset-3 col-lg-7">
@@ -91,8 +89,11 @@
                                 <button type="submit" class="btn btn-primary btn-lg" id="login_btn">保存修改</button>
                             </div>
                         </form>
-                    </div>
+
+
+
                 </div>
+
                 <!--<%--主要内容展示结束--%>-->
 
             </div>

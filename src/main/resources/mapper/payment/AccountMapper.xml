@@ -5,7 +5,7 @@
         INSERT into tb_account (createtime,money,uid) VALUES (#{createTime},#{money},#{uId})
     </insert>
     <insert id="payment">
-        INSERT INTO  tb_account (fromid,toid,createtime,money,uid) VALUES (#{fromId},#{toId},#{createTime},#{money},#{id})
+        INSERT INTO  tb_account (fromid,toid,createtime,money,uid) VALUES (#{fromId},#{toId},#{createTime},#{money},#{uId})
 
     </insert>
     <insert id="gathering">
@@ -23,4 +23,12 @@
     <delete id="deleteRecord">
         delete from tb_account where id = #{id}
     </delete>
+
+    <delete id="deleteAll">
+        DELETE FROM tb_account where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
 </mapper>

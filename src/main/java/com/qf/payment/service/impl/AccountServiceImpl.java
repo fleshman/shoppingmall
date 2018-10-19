@@ -9,6 +9,7 @@ import com.qf.payment.service.BalanceService;
 import com.qf.products.mapper.ProductsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -23,6 +24,8 @@ public class AccountServiceImpl implements AccountService {
     private ProductsMapper productsMapper;
     //充值
     @Override
+    @Transactional
+
     public int recharge(Account account) throws Exception {
         account.setCreateTime(new Date());
         int n = balanceMapper.updateBalance(account.getuId(),-account.getMoney());
@@ -32,6 +35,8 @@ public class AccountServiceImpl implements AccountService {
 
     // 交易
     @Override
+    @Transactional
+
     public int transfer(int id,double money, int pid) throws Exception {
         double findAccount = balanceMapper.selectBalance(id);
         if(findAccount>= money){
@@ -56,6 +61,8 @@ public class AccountServiceImpl implements AccountService {
 
     // 退款
     @Override
+    @Transactional
+
     public int refund(int id, double money, int pid) throws Exception {
         // 根据商品的id 查询 卖家的id
         int sid = 0;
@@ -87,8 +94,15 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @Transactional
+
     public int deleteRecord(int id) {
 
         return accountMapper.deleteRecord(id);
+    }
+
+    @Override
+    public void deleteAll(List<String> idList) {
+        accountMapper.deleteAll(idList);
     }
 }

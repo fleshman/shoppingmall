@@ -15,6 +15,16 @@ public class User {
     private String nickname;
     private String phone;
 
+    public Integer getIsadmin() {
+        return isadmin;
+    }
+
+    public void setIsadmin(Integer isadmin) {
+        this.isadmin = isadmin;
+    }
+
+    private Integer isadmin;
+
     public Integer getId() {
         return id;
     }
@@ -71,16 +81,5 @@ public class User {
         this.nickname = nickname;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", isSeller=" + isSeller +
-                ", email='" + email + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
-    }
+
 }

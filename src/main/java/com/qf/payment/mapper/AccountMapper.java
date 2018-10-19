@@ -37,4 +37,6 @@ public interface AccountMapper {
     Integer countSearch(JSONObject jsonObject);
 
     int deleteRecord(int id);
+
+    void deleteAll(List<String> idList);
 }

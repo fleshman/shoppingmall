@@ -3,7 +3,10 @@ package com.qf.cart.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.qf.cart.mapper.CartMapper;
 import com.qf.cart.pojo.Cart;
+import com.qf.cart.pojo.Product;
 import com.qf.cart.service.CartService;
+import com.qf.products.mapper.ProductsMapper;
+import com.qf.products.pojo.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +21,8 @@ public class CartServiceImpl implements CartService {
 
     @Autowired
     private CartMapper mapper;
+    @Autowired
+    private ProductsMapper productsMapper;
 
     @Override
     @Transactional(readOnly = true)
@@ -62,14 +67,26 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void addCartbyPid(int pid,int uid) {
-        Cart cart = mapper.selectById(pid,uid);
-        if(cart!=null){
+    public int addCartbyPid(int pid,int uid) throws Exception {
+        Products products = new Products();
+        products.setPid(pid);
 
-        }else {
+        int n = productsMapper.selectByPid(products).getPqty();
+        if (n > 0) {
+            Cart cart = mapper.selectById(pid, uid);
+            if (cart != null) {
+                mapper.updateCount(pid, uid);
+                return 1;
 
-            mapper.addCartbyPid(pid,uid);
+            } else {
+
+                mapper.addCartbyPid(pid, uid);
+                return 1;
+            }
+        } else {
+            return 0;
         }
+
 
     }
 }
