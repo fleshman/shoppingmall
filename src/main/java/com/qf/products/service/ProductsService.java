@@ -51,4 +51,6 @@ public interface ProductsService {
      * @throws Exception
      */
     public Products findByPid(Products products) throws Exception;
+
+    void updateProduct(int pid);
 }

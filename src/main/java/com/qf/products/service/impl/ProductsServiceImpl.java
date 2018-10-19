@@ -54,4 +54,9 @@ public class ProductsServiceImpl implements ProductsService {
     public Products findByPid(Products products) throws Exception {
         return pro1.selectByPid(products);
     }
+
+    @Override
+    public void updateProduct(int pid) {
+        pro1.updateProduct(pid);
+    }
 }

@@ -53,7 +53,7 @@
                                 <input type="text" id="from_balance" name="money" class="form-control" placeholder="请输入金额" >
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal" id="close" onclick="close()">关闭</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal" id="closeModal">关闭</button>
                                 <button type="submit" class="btn btn-primary" id="save" >提交</button>
                             </div>
                         </form>
@@ -178,7 +178,7 @@
                     dataType:"text",
                     success:function (result) {
                         alert(result)
-                        $("#close").trigger("click");
+                        $("#closeModal").trigger("click");
                         window.location.reload()
                     }
 
@@ -218,7 +218,7 @@
                 columns: [{
                     fileid: 'state', checkbox: true
 
-                },{ field: 'id', title: 'ID', align:"center" }, { field: 'fromId', title: '转出ID', align:"center" , align:"center"}, { field: 'toId', title: '转入d' , align:"center"},
+                },{ field: 'id', title: 'ID', align:"center" }, { field: 'fromId', title: '转出ID', align:"center" , align:"center"}, { field: 'toId', title: '转入ID' , align:"center"},
 
                     { field: 'createTime', title: '创建时间', align:"center",formatter:function (value) {
                         return changeDateFormat(value);

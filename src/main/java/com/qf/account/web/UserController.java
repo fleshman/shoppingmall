@@ -176,5 +176,10 @@ public class UserController {
         return "ok";
     }
 
+    @RequestMapping("/exit")
+    public String exit(HttpSession session){
+        session.invalidate();
+        return "login";
+    }
 
 }

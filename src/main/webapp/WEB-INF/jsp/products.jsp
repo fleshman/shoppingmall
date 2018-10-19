@@ -280,7 +280,7 @@
                         width: 160, // 定义列的宽度，单位为像素px
                         formatter: function (value, row, index) {
                             var obj = JSON.stringify(row);
-                            return "<button  class='btn btn-info btn-sm'   data-toggle='modal' data-target='#myModa2' onclick='update(" + obj + ")'>修改</button> <button  class='btn btn-danger btn-sm'    onclick='delete1(" + row.pid + ")'>删除</button> <button  class='btn btn-info btn-sm'  onclick='addproduct( "+ row.pid + ")'>添加购物车</button> "
+                            return "<button  class='btn btn-info btn-sm'   data-toggle='modal' data-target='#myModa2' onclick='update(" + obj + ")'>修改</button> <button  class='btn btn-danger btn-sm'    onclick='delete1(" + row.pid + ")'>删除</button> "
                         }
 
                     }

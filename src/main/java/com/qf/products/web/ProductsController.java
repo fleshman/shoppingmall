@@ -3,6 +3,7 @@ package com.qf.products.web;
 import com.alibaba.fastjson.JSONObject;
 import com.qf.products.pojo.Products;
 import com.qf.products.service.ProductsService;
+import com.qf.util.Info;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,5 +96,11 @@ public class ProductsController {
         Products pro = ser.findByPid(products);
         model.addAttribute("product", pro);
         return "product";
+    }
+    @ResponseBody
+    @RequestMapping("/updateProduct")
+    public String updateProduct(int pid){
+        ser.updateProduct(pid);
+        return Info.SUCCESS;
     }
 }
