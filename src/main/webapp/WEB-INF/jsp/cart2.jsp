@@ -43,10 +43,10 @@
             <h1><i class="fa fa-dashboard"></i> 购物车列表</h1>
             <p>review your cart to check your bill</p>
         </div>
-        <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="#">退出</a></li>
-        </ul>
+        <%--<ul class="app-breadcrumb breadcrumb">--%>
+            <%--<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>--%>
+            <%--<li class="breadcrumb-item"><a href="#">退出</a></li>--%>
+        <%--</ul>--%>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -206,11 +206,15 @@
 
     function deleteCart(id) {
         $.post(
-            url = "deleteCart?id=" + id,
-
-            function () {
-                alert("删除成功！");
-                $("#mytable").bootstrapTable("refresh");
+            url = "deleteCart/" + id,
+            {'_method':'DELETE'},
+            function (rec) {
+                if(rec=="success"){
+                    alert("删除成功！ ");
+                    $("#mytable").bootstrapTable("refresh");
+                }else {
+                    alert("删除失败！ ");
+                }
             }
         )
     }
@@ -301,8 +305,11 @@
                    }else {
                        $(rows).each(function () {
                            var pid = this.pid;
-                           var totalprice = this.pid*this.p.pprice;
+                           var totalprice = this.count*this.p.pprice;
                            var id = this.id;
+                        
+
+                           alert(totalprice);
                            $.ajax({
                                url:"transfer/"+pid+"/"+totalprice,
                                method:"put",

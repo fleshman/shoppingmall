@@ -14,13 +14,13 @@ public interface CartMapper {
 
     List<Cart> findCartList(JSONObject jo);
 
-    void deleteCartById(int id);
+    int deleteCartById(int id);
 
-    void changeCount(int id, int count);
+    int changeCount(int id, int count);
 
-    void deleteAllSelected(List<Integer> ids);
+    int deleteAllSelected(List<Integer> ids);
 
-    void addCartbyPid(int pid,int uid);
+    int addCartbyPid(int pid,int uid);
 
     Cart selectById(int pid,int uid);
 

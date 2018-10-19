@@ -49,21 +49,21 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void deleteCartById(int id) {
-        mapper.deleteCartById(id);
+    public int deleteCartById(int id) {
+        return mapper.deleteCartById(id);
     }
 
     @Override
-    public void changeCount(int id, int count) {
+    public int changeCount(int id, int count) {
        /* HashMap<Object, Object> map = new HashMap<>();
         map.put("count",count);
         map.put("id",id);*/
-        mapper.changeCount(id, count);
+        return mapper.changeCount(id, count);
     }
 
     @Override
-    public void deleteAllSelected(List<Integer> ids) {
-        mapper.deleteAllSelected(ids);
+    public int deleteAllSelected(List<Integer> ids) {
+        return mapper.deleteAllSelected(ids);
     }
 
     @Override
